@@ -1,6 +1,97 @@
+//create the joystick to control the rover
 joystick = buildJoystick(document.getElementById('base'));
 
-//setInterval(() => console.log(joystick.getPosition()), 16);
+//vars
+var positions = [];
+joystickEnabled = true;
+
+//event listeners
+document.addEventListener('keydown', keyDown);
+document.addEventListener('keyup', keyUp);
+
+//to constantly update joystick
+setInterval(updateMovement, 20);
+
+function keyDown(e) {
+	joystickEnabled = false;
+	if (e.code == "KeyW") {
+		drive();
+	}
+	if (e.code == "KeyS") {
+		reverse();
+	}
+	if (e.code == "KeyA") {
+		left();
+	}
+	if (e.code == "KeyD") {
+		right();
+	}
+}
+
+function keyUp(e) {
+	if (e.code == "KeyW" || e.code == "KeyS") {
+		neutral();
+	}
+	if (e.code == "KeyA" || e.code == "KeyD") {
+		straight();
+	}
+}
+
+//function to update joystick position and control movement
+function updateMovement() {
+	positions = joystick.getPosition();
+	//left, straight, or right
+	if (positions[0] < -30) {
+		joystickEnabled = true;
+		left();
+	}
+	if (positions[0] >= -30 && positions[0] <= 30 && joystickEnabled == true) {
+		straight();
+	}
+	if (positions[0] > 30) {
+		joystickEnabled = true;
+		right();
+	}
+	//drive, neutral, reverse
+	if (positions[1] > 30) {
+		joystickEnabled = true;
+		drive();
+	}
+	if (positions[1] >= -30 && positions[1] <= 30 && joystickEnabled == true) {
+		neutral();
+	}
+	if (positions[1] < -30) {
+		joystickEnabled = true;
+		reverse();
+	}
+}
+
+//functions for movement and direction
+function drive() {
+	console.log("drive");
+	//routes
+}
+function neutral() {
+	console.log("neutral");
+	//routes
+}
+function reverse() {
+	console.log("reverse");
+	//routes
+}
+function left() {
+	console.log("left");
+	//call routes for blinker and motor left
+}
+function straight() {
+	console.log("straight");
+	//call routes for blinker and motor off
+}
+function right() {
+	console.log("right");
+	//call routes for blinker and motor right
+}
+
 
 //joystick:
 function buildJoystick(parent) {
