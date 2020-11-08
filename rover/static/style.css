@@ -1,22 +1,60 @@
 #main {
-	align-items: center;
-	display: flex;
-	height: 100vh;
-	justify-content: center;
-	margin: auto;
-	width: 100vw;
+        align-items: center;
+        display: flex;
+        height: 100vh;
+        justify-content: center;
+        margin: auto;
+        width: 100vw;
 }
+
+body{
+        background-color: grey;
+}
+
+h1{
+        width: 20em;
+        text-align: center;
+        color: blue;
+        font-family: "Comic Sans MS", cursive;
+        background: linear-gradient(lightcyan,lightgreen);
+        margin: auto;
+        margin-bottom: 2em;
+}
+
+article{
+        display: flex;
+}
+
+#bigboy{
+        flex: 0 0 65%;
+}
+
+#smallboy{
+        flex: 0 0 35%;
+}
+
+figure{
+        margin: auto;
+        width: 350px;
+}
+
+button{
+        margin-left: 265px;
+}
+
 /* everything above this you gotta fix ok ty */
 #base {
-	width: 100px;
-	height: 100px;
+        width: 150px;
+        height: 150px;
+        margin:auto;
 }
 
 .joystick {
-	background-color: black;
-	border-radius: 100%;
-	cursor: pointer;
-	height: 100%;
-	user-select: none;
-	width: 100%;
+        background-color: black;
+        border-radius: 100%;
+        cursor: pointer;
+        height: 100%;
+        user-select: none;
+        width: 100%;
 }
+	
