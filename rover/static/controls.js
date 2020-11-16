@@ -4,6 +4,15 @@ joystick = buildJoystick(document.getElementById('base'));
 //vars
 var positions = [];
 joystickEnabled = true;
+collAvoid = true;
+var distButton = $("distance");
+//enum/class for direction to prevent messing with the servo through the keyboard
+const directions = {
+	LEFT: 'left',
+	RIGHT: 'right',
+	STRAIGHT: 'straight'
+}
+direction = directions.STRAIGHT;
 
 //event listeners
 document.addEventListener('keydown', keyDown);
@@ -20,11 +29,13 @@ function keyDown(e) {
 	if (e.code == "KeyS") {
 		reverse();
 	}
-	if (e.code == "KeyA") {
+	if (e.code == "KeyA" && direction != directions.RIGHT) {
 		left();
+		direction = directions.LEFT;
 	}
-	if (e.code == "KeyD") {
+	if (e.code == "KeyD" && direction != directions.LEFT) {
 		right();
+		direction = directions.RIGHT;
 	}
 }
 
@@ -34,6 +45,7 @@ function keyUp(e) {
 	}
 	if (e.code == "KeyA" || e.code == "KeyD") {
 		straight();
+		direction = directions.STRAIGHT;
 	}
 }
 
@@ -68,32 +80,86 @@ function updateMovement() {
 
 //functions for movement and direction
 function drive() {
-	console.log("drive");
-	//routes
+	$.ajax({
+		url: "/drive",
+		type: "post",
+		success: function(response) {
+			console.log("drive");
+		}
+	});
 }
 function neutral() {
-	console.log("neutral");
-	//routes
+	$.ajax({
+		url: "/neutral",
+		type: "post",
+		success: function(response) {
+			console.log("neutral");
+		}
+	});
 }
 function reverse() {
-	console.log("reverse");
-	//routes
+	$.ajax({
+		url: "/reverse",
+		type: "post",
+		success: function(response) {
+			console.log("reverse");
+		}
+	});
 }
 function left() {
-	console.log("left");
-	//call routes for blinker and motor left
+	$.ajax({
+		url: "/left",
+		type: "post",
+		success: function(response) {
+			console.log("left");
+		}
+	});
 }
 function straight() {
-	console.log("straight");
-	//call routes for blinker and motor off
+	$.ajax({
+		url: "/straight",
+		type: "post",
+		success: function(response) {
+			console.log("straight");
+		}
+	});
 }
 function right() {
-	console.log("right");
-	//call routes for blinker and motor right
+	$.ajax({
+		url: "/right",
+		type: "post",
+		success: function(response) {
+			console.log("right");
+		}
+	});
 }
 
+function getDist() {
+	$.ajax({
+		url: "/get_dist",
+		type: "post",
+		success: function(response) {
+			if (response == true && collAvoid == true) {
+				neutral();
+				reverse();
+				setTimeout(() => {  neutral(); }, 300); //reverse for .3 seconds
+			}
+		}
+	});
+}
 
-//joystick:
+//button, i do want to make it change the class instead of text
+distButton.click(function() {
+    if (distButton.text() === "Disable Collision Avoidance") {
+        distButton.text("Enable Collision Avoidance");
+		collAvoid = false;
+    } else {
+        distButton.text("Disable Collision Avoidance");
+		collAvoid = true;
+    }
+});
+
+//joystick
 function buildJoystick(parent) {
 	const range = 100;
 	circle = document.createElement('div');
