@@ -35,7 +35,7 @@ GPIO.setup(SERVO_PIN, GPIO.OUT)
 p = GPIO.PWM(SERVO_PIN, 50) #not sure about the 50Hz, range is from 2-12, 7 straight
 p.start(7) #initialize it to halfway
 time.sleep(1)
-p.changeDutyCycle(0)
+p.ChangeDutyCycle(0)
 
 """
 
