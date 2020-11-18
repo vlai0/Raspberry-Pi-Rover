@@ -56,21 +56,21 @@ def neutral():
 @app.route("/left", methods=["POST"])
 def left():
     GPIO.output(LEFT_BLINKER_PIN, GPIO.HIGH)
-    p.changeDutyCycle(3.5) #for now idk how far it should go, 2 would be 180 since the servo is upside down right
-    p.changeDutyCycle(0) #so it doesn't jitter
+    p.ChangeDutyCycle(3.5) #for now idk how far it should go, 2 would be 180 since the servo is upside down right
+    p.ChangeDutyCycle(0) #so it doesn't jitter
 
 @app.route("/right", methods=["POST"])
 def right():
     GPIO.output(RIGHT_BLINKER_PIN, GPIO.HIGH)
-    p.changeDutyCycle(10.5)
-    p.changeDutyCycle(0) #so it doesn't jitter
+    p.ChangeDutyCycle(10.5)
+    p.ChangeDutyCycle(0) #so it doesn't jitter
 
 @app.route("/straight", methods=["POST"])
 def straight():
     GPIO.output(LEFT_BLINKER_PIN, GPIO.LOW)
     GPIO.output(RIGHT_BLINKER_PIN, GPIO.LOW)
-    p.changeDutyCycle(7)
-    p.changeDutyCycle(0) #so it doesn't jitter
+    p.ChangeDutyCycle(7)
+    p.ChangeDutyCycle(0) #so it doesn't jitter
 
 #ultrasonic sensor
 @app.route("/get_dist", methods=["POST"])
