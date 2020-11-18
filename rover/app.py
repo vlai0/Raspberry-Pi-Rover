@@ -57,12 +57,14 @@ def neutral():
 def left():
     GPIO.output(LEFT_BLINKER_PIN, GPIO.HIGH)
     p.ChangeDutyCycle(3.5) #for now idk how far it should go, 2 would be 180 since the servo is upside down right
+    time.sleep(0.2) #to give the servo time to turn before it is told to stop jittering if we want to avoid using time here we can't do the next line same for others
     p.ChangeDutyCycle(0) #so it doesn't jitter
 
 @app.route("/right", methods=["POST"])
 def right():
     GPIO.output(RIGHT_BLINKER_PIN, GPIO.HIGH)
     p.ChangeDutyCycle(10.5)
+    time.sleep(0.2)
     p.ChangeDutyCycle(0) #so it doesn't jitter
 
 @app.route("/straight", methods=["POST"])
@@ -70,6 +72,7 @@ def straight():
     GPIO.output(LEFT_BLINKER_PIN, GPIO.LOW)
     GPIO.output(RIGHT_BLINKER_PIN, GPIO.LOW)
     p.ChangeDutyCycle(7)
+    time.sleep(0.2)
     p.ChangeDutyCycle(0) #so it doesn't jitter
 
 #ultrasonic sensor
