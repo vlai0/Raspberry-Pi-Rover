@@ -25,6 +25,7 @@ function keyDown(e) {
 	joystickEnabled = false;
 	if (e.code == "KeyW") {
 		drive();
+		getDist();
 	}
 	if (e.code == "KeyS") {
 		reverse();
@@ -68,6 +69,7 @@ function updateMovement() {
 	if (positions[1] > 30) {
 		joystickEnabled = true;
 		drive();
+		getDist();
 	}
 	if (positions[1] >= -30 && positions[1] <= 30 && joystickEnabled == true) {
 		neutral();
