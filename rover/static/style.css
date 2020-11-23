@@ -1,60 +1,98 @@
 #main {
-        align-items: center;
-        display: flex;
-        height: 100vh;
-        justify-content: center;
-        margin: auto;
-        width: 100vw;
+	align-items: center;
+	display: flex;
+	height: 100vh;
+	justify-content: center;
+	margin: auto;
+	width: 100vw;
 }
 
 body{
-        background-color: grey;
+	background-color: #A9A9A9;
 }
 
 h1{
-        width: 20em;
+	width: 20em;
         text-align: center;
         color: blue;
         font-family: "Comic Sans MS", cursive;
-        background: linear-gradient(lightcyan,lightgreen);
-        margin: auto;
+	background: linear-gradient(lightcyan,lightgreen);
+	margin: auto;
         margin-bottom: 2em;
 }
 
 article{
-        display: flex;
+	display: flex;
 }
 
 #bigboy{
-        flex: 0 0 65%;
+	flex: 0 1 65%;
+	padding: 1em;
+	border-right: solid thin white;
+}
+
+#bigboy figure{
+        margin: auto;
+	width: 550px;
+}
+
+#bigboy h2{
+	text-align: center;
+  	font-family: "Comic Sans MS", cursive;
+  	background-color: rgba(255,255,255,.5);	
+	width: 550px;
+	margin: auto;
+	margin-bottom: 10px;
 }
 
 #smallboy{
-        flex: 0 0 35%;
+	flex: 0 1 35%;
+ 	padding: 1em;
 }
 
-figure{
-        margin: auto;
-        width: 350px;
+#smallboy figure{
+	margin: auto;
+	width: 350px;
+}
+
+#smallboy h2{
+	background-color: rgba(255,255,255,.5);	
+	text-align: center;
+  	font-family: "Comic Sans MS", cursive;
+	width: 350px;
+	margin: auto;
+	margin-bottom: 10px;
 }
 
 button{
-        margin-left: 265px;
+	width: 12em;
+	margin-left: 185px;
+	color: white;
+	border-radius: 6px;
+	background: blue;
+	font-family: "Helvetica", cursive;
+	font-size: 100%;
+	margin-top: 25px;
+}
+
+button:hover{
+	background-color: darkblue;
+	cursor: pointer;
 }
 
 /* everything above this you gotta fix ok ty */
 #base {
-        width: 150px;
-        height: 150px;
-        margin:auto;
+	width: 150px;
+	height: 150px;
+	margin:auto;
 }
 
 .joystick {
-        background-color: black;
-        border-radius: 100%;
-        cursor: pointer;
-        height: 100%;
-        user-select: none;
-        width: 100%;
+	background-color: black;
+	border-radius: 100%;
+	cursor: pointer;
+	height: 100%;
+	user-select: none;
+	width: 100%;
 }
-	
+
