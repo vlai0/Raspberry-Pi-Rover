@@ -19,7 +19,9 @@ tooClose = False
 
 #define pin numbers here 
 DRIVE_PIN = 8
-REVERSE_PIN =10
+DRIVE_PIN_TWO = 11
+REVERSE_PIN = 10
+REVERSE_PIN_TWO = 13
 SERVO_PIN =40
 LEFT_BLINKER_PIN = 16
 RIGHT_BLINKER_PIN = 18
@@ -28,7 +30,9 @@ DIST_OUT_PIN = 24
 
 #set up pins
 GPIO.setup(DRIVE_PIN, GPIO.OUT)
+GPIO.setup(DRIVE_PIN_TWO, GPIO.OUT)
 GPIO.setup(REVERSE_PIN, GPIO.OUT)
+GPIO.setup(REVERSE_PIN_TWO, GPIO.OUT)
 GPIO.setup(RIGHT_BLINKER_PIN, GPIO.OUT)
 GPIO.setup(LEFT_BLINKER_PIN, GPIO.OUT)
 GPIO.setup(DIST_OUT_PIN, GPIO.OUT)
@@ -44,16 +48,20 @@ p.ChangeDutyCycle(0)
 @app.route("/drive", methods=["POST"])
 def drive():
     GPIO.output(DRIVE_PIN, GPIO.HIGH)
+    GPIO.output(DRIVE_PIN_TWO, GPIO.HIGH)
 
 @app.route("/reverse", methods=["POST"])
 def reverse():
     GPIO.output(REVERSE_PIN, GPIO.HIGH)
+    GPIO.output(REVERSE_PIN_TWO, GPIO.HIGH)
 
 
 @app.route("/neutral", methods=["POST"])
 def neutral():
     GPIO.output(DRIVE_PIN, GPIO.LOW)
+    GPIO.output(DRIVE_PIN_TWO, GPIO.LOW)
     GPIO.output(REVERSE_PIN, GPIO.LOW)
+    GPIO.output(REVERSE_PIN_TWO, GPIO.LOW)
 
 @app.route("/left", methods=["POST"])
 def left():
