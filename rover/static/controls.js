@@ -19,7 +19,7 @@ document.addEventListener('keydown', keyDown);
 document.addEventListener('keyup', keyUp);
 
 //to constantly update joystick
-setInterval(updateMovement, 20);
+setInterval(updateMovement, 100);
 
 function keyDown(e) {
 	joystickEnabled = false;
@@ -86,7 +86,7 @@ function drive() {
 		url: "/drive",
 		type: "post",
 		success: function(response) {
-			console.log("drive");
+			console.log(response);
 		}
 	});
 }
@@ -95,7 +95,7 @@ function neutral() {
 		url: "/neutral",
 		type: "post",
 		success: function(response) {
-			console.log("neutral");
+			console.log(response);
 		}
 	});
 }
@@ -104,7 +104,7 @@ function reverse() {
 		url: "/reverse",
 		type: "post",
 		success: function(response) {
-			console.log("reverse");
+			console.log(response);
 		}
 	});
 }
@@ -113,7 +113,7 @@ function left() {
 		url: "/left",
 		type: "post",
 		success: function(response) {
-			console.log("left");
+			console.log(response);
 		}
 	});
 }
@@ -122,7 +122,7 @@ function straight() {
 		url: "/straight",
 		type: "post",
 		success: function(response) {
-			console.log("straight");
+			console.log(response);
 		}
 	});
 }
@@ -131,7 +131,7 @@ function right() {
 		url: "/right",
 		type: "post",
 		success: function(response) {
-			console.log("right");
+			console.log(response);
 		}
 	});
 }
