@@ -1,7 +1,7 @@
 from flask import Flask, render_template, Response
 import RPi.GPIO as GPIO
 import time
-#from camera_pi import Camera #Miguel Grinberg's pi camera implementation
+from camera_pi import Camera #Miguel Grinberg's pi camera implementation
 
 app = Flask(__name__)
 
@@ -22,7 +22,7 @@ DRIVE_PIN = 8
 DRIVE_PIN_TWO = 11
 REVERSE_PIN = 10
 REVERSE_PIN_TWO = 13
-SERVO_PIN =40
+SERVO_PIN = 40
 LEFT_BLINKER_PIN = 16
 RIGHT_BLINKER_PIN = 18
 DIST_IN_PIN = 22
@@ -49,11 +49,13 @@ p.ChangeDutyCycle(0)
 def drive():
     GPIO.output(DRIVE_PIN, GPIO.HIGH)
     GPIO.output(DRIVE_PIN_TWO, GPIO.HIGH)
+    return "drive"
 
 @app.route("/reverse", methods=["POST"])
 def reverse():
     GPIO.output(REVERSE_PIN, GPIO.HIGH)
     GPIO.output(REVERSE_PIN_TWO, GPIO.HIGH)
+    return "reverse"
 
 
 @app.route("/neutral", methods=["POST"])
@@ -62,32 +64,36 @@ def neutral():
     GPIO.output(DRIVE_PIN_TWO, GPIO.LOW)
     GPIO.output(REVERSE_PIN, GPIO.LOW)
     GPIO.output(REVERSE_PIN_TWO, GPIO.LOW)
+    return "neutral"
 
 @app.route("/left", methods=["POST"])
 def left():
     global isStraight
     isStraight = False
     GPIO.output(LEFT_BLINKER_PIN, GPIO.HIGH)
-    p.ChangeDutyCycle(3.5) #for now idk how far it should go, 2 would be 180 since the servo is upside down right
+    p.ChangeDutyCycle(9) #for now idk how far it should go, 2 would be 180 since the servo is upside down right
+    return "left"
 
 @app.route("/right", methods=["POST"])
 def right():
     global isStraight
     isStraight = False
     GPIO.output(RIGHT_BLINKER_PIN, GPIO.HIGH)
-    p.ChangeDutyCycle(10.5)
+    p.ChangeDutyCycle(6)
+    return "right"
 
 @app.route("/straight", methods=["POST"])
 def straight():
     global isStraight
     if isStraight:
-        return 0
+        return "straight"
     GPIO.output(LEFT_BLINKER_PIN, GPIO.LOW)
     GPIO.output(RIGHT_BLINKER_PIN, GPIO.LOW)
     p.ChangeDutyCycle(7)
     time.sleep(0.2)
     p.ChangeDutyCycle(0) #so it doesn't jitter
     isStraight = True
+    return "straight"
 
 
 #ultrasonic sensor
