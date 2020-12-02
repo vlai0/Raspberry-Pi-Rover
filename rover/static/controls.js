@@ -5,7 +5,7 @@ joystick = buildJoystick(document.getElementById('base'));
 var positions = [];
 joystickEnabled = true;
 collAvoid = true;
-var distButton = $("distance");
+var distButton = $("#distance");
 //enum/class for direction to prevent messing with the servo through the keyboard
 const directions = {
 	LEFT: 'left',
