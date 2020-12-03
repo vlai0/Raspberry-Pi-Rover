@@ -13,15 +13,15 @@
                         <section id="bigboy">
 				<h2> Camera </h2>
                                 <figure>
-                                <img src="https://via.placeholder.com/350">
+                              <!--  <img src="https://via.placeholder.com/350">-->
+				<img src="{{ url_for('livestream') }}">
                                 </figure>
                                 <div id="base"></div>
                         </section>
                         <section id="smallboy">
 				<h2> Temperature Data </h2>
                                 <figure>
-                                <!-- <img src="https://via.placeholder.com/350">  (delete this later)-->
-                                <img src="{{ url_for('livestream') }}">
+                                <img src="https://via.placeholder.com/350">
 								</figure>
 								<button id="distance" type="button">Disable Collision Avoidance</button>
                         </section>
