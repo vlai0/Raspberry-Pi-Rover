@@ -33,7 +33,6 @@ article{
 
 #bigboy figure{
         margin: auto;
-	width: 550px;
 }
 
 #bigboy h2{
@@ -66,7 +65,7 @@ article{
 
 button{
 	width: 12em;
-	margin-left: 185px;
+	margin-left: 175px;
 	color: white;
 	border-radius: 6px;
 	background: blue;
