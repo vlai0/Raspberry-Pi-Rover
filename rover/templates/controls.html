@@ -11,17 +11,23 @@
                 </header>
                 <article>
                         <section id="bigboy">
+				<h2> Camera </h2>
                                 <figure>
-                                <img src="https://via.placeholder.com/350">
+				<img src="{{ url_for('livestream') }}">
                                 </figure>
                                 <div id="base"></div>
                         </section>
                         <section id="smallboy">
+				<h2> Temperature Data </h2>
                                 <figure>
-                                <!-- <img src="https://via.placeholder.com/350">  (delete this later)-->
-                                <img src="{{ url_for('livestream') }}">
-								</figure>
-								<button id="distance" type="button">Disable Collision Avoidance</button>
+                                	<iframe src="https://iot.app.initialstate.com/embed/#/tiles/bkt_111abw8ki86wcgg"></iframe>
+				</figure>
+				<button id="getTemp" type="button">Get Temperature</button>
+				<h2 id="dist-header"> Distance Sensor </h2>
+				<figure>
+					<iframe src="https://iot.app.initialstate.com/embed/#/tiles/bkt_detl7ki9ht43e"></iframe>
+				</figure>
+				<button id="getDis" type="button">Get Distance</button>
                         </section>
                 </article>
                 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>

@@ -4,8 +4,8 @@ joystick = buildJoystick(document.getElementById('base'));
 //vars
 var positions = [];
 joystickEnabled = true;
-collAvoid = true;
-var distButton = $("distance");
+var tempButton = $("#getTemp");
+var getDisButton = $("#getDis")
 //enum/class for direction to prevent messing with the servo through the keyboard
 const directions = {
 	LEFT: 'left',
@@ -19,7 +19,7 @@ document.addEventListener('keydown', keyDown);
 document.addEventListener('keyup', keyUp);
 
 //to constantly update joystick
-setInterval(updateMovement, 20);
+setInterval(updateMovement, 100);
 
 function keyDown(e) {
 	joystickEnabled = false;
@@ -47,6 +47,16 @@ function keyUp(e) {
 		straight();
 		direction = directions.STRAIGHT;
 	}
+}
+
+function getTemp() {
+	$.ajax({
+		url: "/get_temp",
+		type: "post",
+		success: function(response) {
+			console.log(response);
+		}
+	});
 }
 
 //function to update joystick position and control movement
@@ -84,7 +94,7 @@ function drive() {
 		url: "/drive",
 		type: "post",
 		success: function(response) {
-			console.log("drive");
+			console.log(response);
 		}
 	});
 }
@@ -93,7 +103,7 @@ function neutral() {
 		url: "/neutral",
 		type: "post",
 		success: function(response) {
-			console.log("neutral");
+			console.log(response);
 		}
 	});
 }
@@ -102,7 +112,7 @@ function reverse() {
 		url: "/reverse",
 		type: "post",
 		success: function(response) {
-			console.log("reverse");
+			console.log(response);
 		}
 	});
 }
@@ -111,7 +121,7 @@ function left() {
 		url: "/left",
 		type: "post",
 		success: function(response) {
-			console.log("left");
+			console.log(response);
 		}
 	});
 }
@@ -120,7 +130,7 @@ function straight() {
 		url: "/straight",
 		type: "post",
 		success: function(response) {
-			console.log("straight");
+			console.log(response);
 		}
 	});
 }
@@ -129,7 +139,7 @@ function right() {
 		url: "/right",
 		type: "post",
 		success: function(response) {
-			console.log("right");
+			console.log(response);
 		}
 	});
 }
@@ -139,24 +149,17 @@ function getDist() {
 		url: "/get_dist",
 		type: "post",
 		success: function(response) {
-			if (response == true && collAvoid == true) {
-				neutral();
-				reverse();
-				setTimeout(() => {  neutral(); }, 300); //reverse for .3 seconds
-			}
+			console.log(response);
 		}
 	});
 }
 
-//button, i do want to make it change the class instead of text
-distButton.click(function() {
-    if (distButton.text() === "Disable Collision Avoidance") {
-        distButton.text("Enable Collision Avoidance");
-		collAvoid = false;
-    } else {
-        distButton.text("Disable Collision Avoidance");
-		collAvoid = true;
-    }
+tempButton.click(function() {
+    getTemp();
+});
+
+getDisButton.click(function() {
+    getDist();
 });
 
 //joystick
